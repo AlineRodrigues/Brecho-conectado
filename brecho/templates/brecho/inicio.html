@@ -1,0 +1,319 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brechó Conectado</title>
+
+    <link rel="stylesheet" href="{% static 'brecho/css/estilo.css' %}">
+</head>
+
+<body>
+
+    <header class="cabecalho">
+        <div class="identidade">
+
+            <div class="logo">
+                <svg viewBox="0 0 120 85" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Gancho e estrutura do cabide -->
+                    <path d="M60 25 C60 17 70 17 70 9 C70 2 60 1 56 7
+               M60 25 L13 55 Q7 59 14 65 L106 65
+               Q113 59 107 55 Z" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+
+                    <!-- Coração vermelho -->
+                    <path d="M60 75
+               C54 69 43 62 43 53
+               C43 42 57 39 60 50
+               C65 39 78 42 78 53
+               C78 62 67 69 60 75 Z" fill="#f04435" />
+                </svg>
+            </div>
+
+            <h1>Brechó Conectado</h1>
+        </div>
+
+
+        <div class="usuario">
+            <span class="usuario-icone">
+                <img src="{% static 'brecho/img/usuario_voluntario.png' %}" alt="">
+            </span>
+
+            <span>Voluntário</span>
+            <span>⌄</span>
+            <span class="separador"></span>
+
+            <span class="sair">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                    <!-- Contorno da porta -->
+                    <path d="M25 7 H11 V41 H25" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+
+                    <!-- Seta de saída -->
+                    <path d="M20 24 H42 M33 15 L42 24 L33 33" fill="none" stroke="#ffffff" stroke-width="3.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+        </div>
+    </header>
+
+    <main class="conteudo">
+
+        <section class="boas-vindas">
+
+
+            <div class="ilustracao">
+
+                <svg viewBox="0 0 570 250" xmlns="http://www.w3.org/2000/svg" role="img"
+                    aria-label="Quatro camisetas coloridas penduradas em cabides e um coração vermelho">
+
+                    <!-- Haste do cabideiro -->
+                    <path d="M75 45 H425" fill="none" stroke="#142b49" stroke-width="9" stroke-linecap="round" />
+
+                    <!-- Suportes da haste -->
+                    <path d="M105 45 V65 M410 45 V65" fill="none" stroke="#142b49" stroke-width="8"
+                        stroke-linecap="round" />
+
+                    <!-- CABIDE 1 -->
+                    <path d="M144 62
+             C144 55 153 53 153 45
+             C153 32 135 32 135 45
+             C135 53 144 55 144 62" fill="none" stroke="#142b49" stroke-width="6" stroke-linecap="round" />
+
+                    <path d="M144 62 L178 101 H110 Z" fill="none" stroke="#142b49" stroke-width="6"
+                        stroke-linejoin="round" />
+
+                    <!-- CABIDE 2 -->
+                    <path d="M224 62
+             C224 55 233 53 233 45
+             C233 32 215 32 215 45
+             C215 53 224 55 224 62" fill="none" stroke="#142b49" stroke-width="6" stroke-linecap="round" />
+
+                    <path d="M224 62 L258 101 H190 Z" fill="none" stroke="#142b49" stroke-width="6"
+                        stroke-linejoin="round" />
+
+                    <!-- CABIDE 3 -->
+                    <path d="M304 62
+             C304 55 313 53 313 45
+             C313 32 295 32 295 45
+             C295 53 304 55 304 62" fill="none" stroke="#142b49" stroke-width="6" stroke-linecap="round" />
+
+                    <path d="M304 62 L338 101 H270 Z" fill="none" stroke="#142b49" stroke-width="6"
+                        stroke-linejoin="round" />
+
+
+                    <!-- CABIDE 4 -->
+                    <path d="M364 62
+         C364 55 373 53 373 45
+         C373 32 355 32 355 45
+         C355 53 364 55 364 62" fill="none" stroke="#142b49" stroke-width="6" stroke-linecap="round" />
+
+                    <path d="M364 62 L398 101 H330 Z" fill="none" stroke="#142b49" stroke-width="6"
+                        stroke-linejoin="round" />
+
+                    <!-- CAMISETA AZUL -->
+                    <path d="M112 105 L91 119 L72 151
+             L91 166 L105 151 L105 222
+             H183 V151 L197 166 L216 151
+             L197 119 L176 105 L159 115
+             H132 Z" fill="#2875e5" stroke="#1b5fc3" stroke-width="3" stroke-linejoin="round" />
+
+                    <!-- CAMISETA TURQUESA -->
+                    <path d="M192 105 L171 119 L152 151
+             L171 166 L185 151 L185 222
+             H263 V151 L277 166 L296 151
+             L277 119 L256 105 L239 115
+             H212 Z" fill="#17aaa6" stroke="#108d89" stroke-width="3" stroke-linejoin="round" />
+
+                    <!-- CAMISETA AMARELA -->
+                    <path d="M272 105 L251 119 L232 151
+             L251 166 L265 151 L265 222
+             H343 V151 L357 166 L376 151
+             L357 119 L336 105 L319 115
+             H292 Z" fill="#f4bd35" stroke="#d99b19" stroke-width="3" stroke-linejoin="round" />
+
+                    <!-- CAMISETA VERMELHA -->
+                    <path d="M332 105 L311 119 L292 151
+             L311 166 L325 151 L325 222
+             H403 V151 L417 166 L436 151
+             L417 119 L396 105 L379 115
+             H352 Z" fill="#ed4d3c" stroke="#d83d30" stroke-width="3" stroke-linejoin="round" />
+
+                    <!-- CORAÇÃO À DIREITA DO CABIDEIRO -->
+                    <path d="M490 205
+             C475 190 455 174 455 153
+             C455 130 482 123 490 145
+             C498 123 525 130 525 153
+             C525 174 505 190 490 205 Z" fill="#ed4939" />
+
+                </svg>
+            </div>
+
+
+            <div class="mensagem-boas-vindas">
+                <h2>Bem-vindo ao<br>Brechó Conectado!</h2>
+                <p>Organização, solidariedade e impacto social.</p>
+            </div>
+        </section>
+
+        <section class="menu-funcionalidades">
+
+
+
+            <a href="#" class="atalho doacao">
+                <!-- Ícone do presente -->
+                <span class="icone">
+                    <svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+
+                        <!-- Corpo da caixa -->
+                        <rect x="15" y="37" width="50" height="35" rx="2" fill="#ffffff" />
+
+                        <!-- Tampa do presente -->
+                        <rect x="9" y="28" width="62" height="11" rx="2" fill="#ffffff" />
+
+                        <!-- Fita central -->
+                        <path d="M40 29 V72" stroke="#2d6fe8" stroke-width="5" fill="none" />
+
+                        <!-- Laço esquerdo -->
+                        <path d="M40 29
+                     C29 28 17 23 17 13
+                     C17 5 28 5 33 13
+                     C37 19 39 24 40 29" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+
+                        <!-- Laço direito -->
+                        <path d="M40 29
+                     C51 28 63 23 63 13
+                     C63 5 52 5 47 13
+                     C43 19 41 24 40 29" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+
+                        <!-- Centro do laço -->
+                        <circle cx="40" cy="29" r="4" fill="#ffffff" />
+                    </svg>
+                </span>
+
+                <!-- Texto do cartão -->
+                <span>Registrar<br>Doação</span>
+            </a>
+
+
+            <a href="#" class="atalho produto">
+                <span class="icone">
+                    <img src="{% static 'brecho/img/caixa_produto.png' %}" alt="" class="icone-imagem">
+                </span>
+
+                <span>Cadastrar<br>Produto</span>
+            </a>
+
+
+
+            <a href="#" class="atalho estoque">
+                <!-- Ícone da lupa -->
+                <span class="icone">
+                    <svg viewBox="0 0 64 64" width="65" height="65" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+
+                        <!-- Lente -->
+                        <circle cx="26" cy="26" r="17" fill="none" stroke="#ffffff" stroke-width="7" />
+
+                        <!-- Cabo -->
+                        <path d="M39 39 L57 57" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" />
+
+                    </svg>
+                </span>
+
+                <!-- Texto do cartão -->
+                <span>Consultar<br>Estoque</span>
+            </a>
+
+
+            <a href="#" class="atalho venda">
+                <!-- Ícone do carrinho -->
+                <span class="icone">
+                    <svg viewBox="0 0 64 64" width="65" height="65" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+
+                        <!-- Estrutura e alça -->
+                        <path d="M5 9 H13 L22 46 H55" fill="none" stroke="#ffffff" stroke-width="6"
+                            stroke-linecap="round" stroke-linejoin="round" />
+
+                        <!-- Cesto -->
+                        <path d="M15 18 H61 L55 42 H21 Z" fill="#ffffff" />
+
+                        <!-- Rodas -->
+                        <circle cx="27" cy="54" r="5" fill="#ffffff" />
+
+                        <circle cx="52" cy="54" r="5" fill="#ffffff" />
+
+                    </svg>
+                </span>
+
+                <!-- Texto do cartão -->
+                <span>Registrar<br>Venda</span>
+            </a>
+
+
+            <a href="#" class="atalho financeiro">
+                <!-- Ícone do gráfico financeiro -->
+                <span class="icone">
+                    <svg viewBox="0 0 64 64" width="65" height="65" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+
+                        <!-- Barra menor -->
+                        <rect x="10" y="38" width="9" height="17" rx="1" fill="#ffffff" />
+
+                        <!-- Barra intermediária -->
+                        <rect x="27" y="25" width="9" height="30" rx="1" fill="#ffffff" />
+
+                        <!-- Barra maior -->
+                        <rect x="44" y="9" width="9" height="46" rx="1" fill="#ffffff" />
+
+                        <!-- Linha de base -->
+                        <path d="M5 58 H59" stroke="#ffffff" stroke-width="5" stroke-linecap="round" />
+
+                    </svg>
+                </span>
+
+                <!-- Texto do cartão -->
+                <span>Movimentações<br>Financeiras</span>
+            </a>
+
+
+
+            <div class="mensagem-solidaria">
+                <span class="folha-icone">
+                    <img src="{% static 'brecho/img/folha_solidaria.png' %}" alt="" class="icone-imagem">
+                </span>
+
+                <p>Juntos por um<br>mundo mais solidário!</p>
+            </div>
+
+        </section>
+
+        <div class="aviso">
+            <span>ℹ</span>
+            <p>Use o menu acima para acessar as funcionalidades do sistema.</p>
+        </div>
+
+    </main>
+
+
+    <footer class="rodape">
+
+        <span>
+            Brechó Conectado • Paróquia São José de Pirituba
+        </span>
+
+        <div class="acessibilidade">
+            <img src="{% static 'brecho/img/acessibilidade.png' %}" alt="">
+            <span>Acessibilidade</span>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
