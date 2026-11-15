@@ -1,0 +1,299 @@
+﻿{% load static l10n %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Venda - Brechó Conectado</title>
+
+    <link rel="stylesheet" href="{% static 'brecho/css/estilo.css' %}">
+    <script src="{% static 'brecho/js/registrar_venda.js' %}" defer></script>
+</head>
+
+<body>
+
+    <!-- Cabeçalho do sistema -->
+    <header class="cabecalho">
+
+        <div class="identidade">
+
+            <div class="logo">
+                <svg viewBox="0 0 120 85" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60 25 C60 17 70 17 70 9 C70 2 60 1 56 7
+                           M60 25 L13 55 Q7 59 14 65 L106 65
+                           Q113 59 107 55 Z" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M60 75 C54 69 43 62 43 53
+                           C43 42 57 39 60 50
+                           C65 39 78 42 78 53
+                           C78 62 67 69 60 75 Z" fill="#f04435" />
+                </svg>
+            </div>
+
+            <h1>Brechó Conectado</h1>
+        </div>
+
+        <div class="usuario">
+
+            <span class="usuario-icone">
+                <img src="{% static 'brecho/img/usuario_voluntario.png' %}" alt="">
+            </span>
+
+            <span>Voluntário</span>
+            <span>⌄</span>
+            <span class="separador"></span>
+
+            <span class="sair">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M25 7 H11 V41 H25" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M20 24 H42 M33 15 L42 24 L33 33" fill="none" stroke="#ffffff" stroke-width="3.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+
+        </div>
+
+    </header>
+
+    <!-- Área abaixo do cabeçalho -->
+    <div class="layout-venda">
+
+        <!-- Menu lateral -->
+        <aside class="menu-lateral">
+
+            <nav class="navegacao-lateral">
+
+                <a href="/" class="item-menu">
+                    <span>⌂</span>
+                    <span>Início</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>♙</span>
+                    <span>Registrar Doação</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>▣</span>
+                    <span>Cadastrar Produto</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>⌕</span>
+                    <span>Consultar Estoque</span>
+                </a>
+
+                <a href="{% url 'registrar_venda' %}" class="item-menu ativo" aria-current="page">
+                    <span>🛒</span>
+                    <span>Registrar Venda</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>▥</span>
+                    <span>Movimentações Financeiras</span>
+                </a>
+
+            </nav>
+
+            <div class="mensagem-lateral">
+                <img src="{% static 'brecho/img/folha_solidaria.png' %}" alt="">
+                <p>Juntos por um<br>mundo mais solidário!</p>
+            </div>
+
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-venda">
+
+            <!-- Título da página -->
+            <div class="titulo-venda">
+
+                <span class="titulo-venda-icone">
+                    <svg viewBox="0 0 64 64" width="58" height="58" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+
+                        <path d="M5 9 H13 L22 46 H55" fill="none" stroke="#142b49" stroke-width="6"
+                            stroke-linecap="round" stroke-linejoin="round" />
+
+                        <path d="M15 18 H61 L55 42 H21 Z" fill="#142b49" />
+
+                        <circle cx="27" cy="54" r="5" fill="#142b49" />
+
+                        <circle cx="52" cy="54" r="5" fill="#142b49" />
+
+                    </svg>
+                </span>
+
+                <h2>Registrar Venda</h2>
+
+            </div>
+
+            <p class="instrucao-venda">
+                Selecione os produtos disponíveis, confira o valor e confirme a venda.
+            </p>
+
+
+            {% if erro %}
+            <div class="erro-venda" role="alert">
+                <span aria-hidden="true">!</span>
+                <p>{{ erro }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Área da busca, tabela e resumo -->
+            <div class="area-venda">
+
+                <!-- Produtos disponíveis -->
+                <section class="catalogo-venda">
+
+                    <div class="busca-produtos">
+
+                        <span>⌕</span>
+
+                        <input type="search" id="busca-produto" placeholder="Buscar produto por descrição..."
+                            aria-label="Buscar produto por descrição">
+
+                    </div>
+
+                    <form method="post" action="{% url 'registrar_venda' %}" id="form-venda">
+
+                        {% csrf_token %}
+
+                        <div class="tabela-responsiva">
+
+                            <table class="tabela-produtos">
+
+                                <thead>
+                                    <tr>
+                                        <th>Selecionar</th>
+                                        <th>Produto</th>
+                                        <th>Categoria</th>
+                                        <th>Tamanho</th>
+                                        <th>Cor</th>
+                                        <th>Preço</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for produto in produtos %}
+
+                                    <tr class="linha-produto">
+
+                                        <td>
+                                            <input type="checkbox" class="produto-selecao" name="produto_ids"
+                                                value="{{ produto.pk }}" data-price="{{ produto.preco|unlocalize }}"
+                                                data-description="{{ produto.descricao }}"
+                                                aria-label="Selecionar {{ produto.descricao }}">
+                                        </td>
+
+                                        <td>{{ produto.descricao }}</td>
+                                        <td>{{ produto.categoria }}</td>
+                                        <td>{{ produto.tamanho|default:"-" }}</td>
+                                        <td>{{ produto.cor }}</td>
+
+                                        <td>
+                                            R$ {{ produto.preco|floatformat:2 }}
+                                        </td>
+
+                                        <td>
+                                            <span class="status-disponivel">
+                                                {{ produto.get_status_display }}
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+                                    {% empty %}
+
+                                    <tr>
+                                        <td colspan="7" class="sem-produtos">
+                                            Não existem produtos disponíveis no momento.
+                                        </td>
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+                <!-- Resumo dos itens selecionados -->
+                <aside class="resumo-venda">
+
+                    <h3>
+                        <span>🛒</span>
+                        Itens Selecionados
+                    </h3>
+
+                    <div id="itens-selecionados">
+
+                        <p class="resumo-vazio">
+                            Nenhum produto selecionado.
+                        </p>
+
+                    </div>
+
+                    <div class="separador-resumo"></div>
+
+                    <h3>Total da Venda:</h3>
+
+                    <strong id="total-venda">
+                        R$ 0,00
+                    </strong>
+
+                </aside>
+
+            </div>
+
+            <!-- Orientação ao voluntário -->
+            <div class="aviso-venda">
+
+                <span>ℹ</span>
+
+                <p>
+                    Confira se os produtos estão disponíveis antes de confirmar a venda.
+                </p>
+
+            </div>
+
+            <!-- Ações da venda -->
+            <div class="acoes-venda">
+
+                <a href="/" class="botao-cancelar">
+                    ✕ &nbsp; Cancelar
+                </a>
+
+                <button type="submit" form="form-venda" class="botao-confirmar">
+                    ✓ &nbsp; Confirmar Venda
+                </button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="rodape rodape-venda">
+
+        <span>Acesso seguro</span>
+
+        <span class="separador-rodape">|</span>
+
+        <span>Brechó Conectado • Paróquia São José de Pirituba</span>
+
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,348 @@
+﻿{% load static l10n %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda Concluída - Brechó Conectado</title>
+
+    <link rel="stylesheet" href="{% static 'brecho/css/estilo.css' %}">
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="cabecalho">
+
+        <div class="identidade">
+
+            <div class="logo">
+                <svg viewBox="0 0 120 85" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M60 25 C60 17 70 17 70 9 C70 2 60 1 56 7
+                           M60 25 L13 55 Q7 59 14 65 L106 65
+                           Q113 59 107 55 Z" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M60 75 C54 69 43 62 43 53
+                           C43 42 57 39 60 50
+                           C65 39 78 42 78 53
+                           C78 62 67 69 60 75 Z" fill="#f04435" />
+                </svg>
+            </div>
+
+            <h1>Brechó Conectado</h1>
+        </div>
+
+        <div class="usuario">
+
+            <span class="usuario-icone">
+                <img src="{% static 'brecho/img/usuario_voluntario.png' %}" alt="">
+            </span>
+
+            <span>Voluntário</span>
+            <span>⌄</span>
+            <span class="separador"></span>
+
+            <span class="sair">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M25 7 H11 V41 H25" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M20 24 H42 M33 15 L42 24 L33 33" fill="none" stroke="#ffffff" stroke-width="3.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+
+        </div>
+
+    </header>
+
+    <!-- Estrutura da página -->
+    <div class="layout-venda">
+
+        <!-- Menu lateral -->
+        <aside class="menu-lateral">
+
+            <nav class="navegacao-lateral">
+
+                <a href="/" class="item-menu">
+                    <span>⌂</span>
+                    <span>Início</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>♙</span>
+                    <span>Registrar Doação</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>▣</span>
+                    <span>Cadastrar Produto</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>⌕</span>
+                    <span>Consultar Estoque</span>
+                </a>
+
+                <a href="{% url 'registrar_venda' %}" class="item-menu ativo" aria-current="page">
+                    <span>🛒</span>
+                    <span>Registrar Venda</span>
+                </a>
+
+                <a href="#" class="item-menu">
+                    <span>▥</span>
+                    <span>Movimentações Financeiras</span>
+                </a>
+
+            </nav>
+
+            <div class="mensagem-lateral">
+
+                <img src="{% static 'brecho/img/folha_solidaria.png' %}" alt="">
+
+                <p>Juntos por um<br>mundo mais solidário!</p>
+
+            </div>
+
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <main class="conteudo-venda conteudo-sucesso">
+
+            <!-- Mensagem de sucesso -->
+            <section class="mensagem-sucesso" role="status">
+
+                <div class="icone-sucesso">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="32" cy="32" r="30" fill="#18823e" />
+                        <path d="M17 32 L27 42 L48 21" fill="none" stroke="#ffffff" stroke-width="6"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+
+                <div>
+                    <h2>Venda registrada com sucesso!</h2>
+                    <p>A operação foi concluída e os registros foram atualizados.</p>
+                </div>
+
+            </section>
+
+            <!-- Detalhes da venda e resumo financeiro -->
+            <div class="grade-sucesso">
+
+                <!-- Detalhes da venda -->
+                <section class="card-detalhes">
+
+                    <div class="cabecalho-card-sucesso">
+
+                        <span>🛒</span>
+                        <h3>Detalhes da Venda</h3>
+
+                    </div>
+
+                    <div class="corpo-detalhes">
+
+                        <div class="informacoes-venda">
+
+                            <div class="linha-detalhe">
+                                <strong>Número da Venda:</strong>
+                                <span>#{{ venda.id_venda|stringformat:"03d" }}</span>
+                            </div>
+
+                            <div class="linha-detalhe">
+                                <strong>Data:</strong>
+                                <span>{{ venda.data_venda|date:"d/m/Y" }}</span>
+                            </div>
+
+                            <div class="linha-detalhe linha-produtos-sucesso">
+                                <strong>Produtos:</strong>
+
+                                <div>
+                                    {% for item in itens %}
+
+                                    <p>
+                                        {{ item.produto.descricao }}
+                                        ({{ item.produto.tamanho|default:"-" }})
+                                        - {{ item.produto.cor }}
+                                    </p>
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="linha-detalhe">
+                                <strong>Quantidade:</strong>
+                                <span>{{ quantidade_itens }}</span>
+                            </div>
+
+                            <div class="linha-detalhe">
+                                <strong>Valor Total:</strong>
+
+                                <strong class="valor-total-detalhes">
+                                    R$ {{ venda.valor_total|localize }}
+                                </strong>
+                            </div>
+
+                        </div>
+
+                        <!-- Ilustração ilustrativa do produto -->
+                        <div class="produto-ilustrativo" aria-label="Ilustração de roupa">
+
+                            <svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                                <path d="M48 20 L67 10 L93 10 L112 20
+                                       L146 47 L129 73 L111 61
+                                       L111 165 L49 165 L49 61
+                                       L31 73 L14 47 Z" fill="#2875e5" stroke="#1b5fc3" stroke-width="3"
+                                    stroke-linejoin="round" />
+
+                                <path d="M67 10 Q80 42 93 10" fill="none" stroke="#1b5fc3" stroke-width="4" />
+
+                                <path d="M70 18 Q80 24 90 18" fill="none" stroke="#ffffff" stroke-width="2" />
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Resumo financeiro -->
+                <aside class="card-financeiro">
+
+                    <div class="cabecalho-card-sucesso">
+
+                        <span>▥</span>
+                        <h3>Resumo Financeiro</h3>
+
+                    </div>
+
+                    <div class="corpo-financeiro">
+
+                        <p class="referencia-financeira">
+                            Período: {{ mes_referencia }}
+                        </p>
+
+                        <div class="linha-financeira">
+                            <span>Entradas (Vendas):</span>
+
+                            <strong class="entrada-financeira">
+                                R$ {{ entradas_periodo|localize }}
+                            </strong>
+                        </div>
+
+                        <div class="linha-financeira">
+                            <span>Despesas:</span>
+
+                            <strong class="despesa-financeira">
+                                R$ {{ despesas_periodo|localize }}
+                            </strong>
+                        </div>
+
+                        <div class="linha-financeira">
+                            <span>Destinações:</span>
+
+                            <strong class="destinacao-financeira">
+                                R$ {{ destinacoes_periodo|localize }}
+                            </strong>
+                        </div>
+
+                        <div class="saldo-financeiro">
+
+                            <strong>Saldo do Período:</strong>
+
+                            <strong>
+                                R$ {{ saldo_periodo|localize }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+            <!-- Confirmação da atualização -->
+            <section class="confirmacao-estoque">
+
+                <div class="icone-confirmacao">
+                    ✓
+                </div>
+
+                <div>
+                    {% if quantidade_itens == 1 %}
+                    <strong>Produto atualizado para: Vendido</strong>
+                    {% else %}
+                    <strong>{{ quantidade_itens }} produtos atualizados para: Vendido</strong>
+                    {% endif %}
+
+                    <p>Entrada financeira registrada.</p>
+                </div>
+
+            </section>
+
+            <!-- Botões -->
+            <div class="acoes-sucesso">
+
+                <a href="{% url 'registrar_venda' %}" class="botao-nova-venda">
+                    🛒 &nbsp; Nova Venda
+                </a>
+
+                <a href="/" class="botao-voltar-menu">
+                    ⌂ &nbsp; Voltar ao Menu
+                </a>
+
+            </div>
+
+            <!-- Dica -->
+            <div class="dica-sucesso">
+
+                <span>ℹ</span>
+
+                <p>
+                    Dica: Você pode consultar o estoque a qualquer momento
+                    para verificar a disponibilidade dos produtos.
+                </p>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="rodape rodape-venda">
+
+        <div class="rodape-institucional">
+
+            <svg class="icone-seguranca" viewBox="0 0 32 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                <path d="M16 2.5 L27.5 7 V16.2
+                     C27.5 24.3 23 29.3 16 33.5
+                     C9 29.3 4.5 24.3 4.5 16.2
+                     V7 Z" fill="none" stroke="currentColor" stroke-width="2.5" />
+
+                <path d="M10.5 17 L14 20.5 L21.5 12.5" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+
+            <span>Acesso seguro</span>
+
+            <span class="separador-rodape">|</span>
+
+            <span>Brechó Conectado • Paróquia São José de Pirituba</span>
+
+        </div>
+
+        <div class="acessibilidade">
+            <img src="{% static 'brecho/img/acessibilidade.png' %}" alt="">
+            <span>Acessibilidade</span>
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
