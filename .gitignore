@@ -20,3 +20,6 @@ db.sqlite3
 .coverage
 .coverage.*
 htmlcov/
+
+# Arquivos estáticos coletados para produção
+/staticfiles/
