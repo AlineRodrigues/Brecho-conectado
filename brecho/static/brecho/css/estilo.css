@@ -1250,7 +1250,7 @@ main.conteudo {
     font-size: 19px;
 }
 
-.saldo-financeiro strong:last-child {
+.saldo-financeiro>strong:last-child {
     font-size: 33px;
     text-align: center;
 }
@@ -1457,7 +1457,7 @@ main.conteudo {
         font-size: 15px;
     }
 
-    .saldo-financeiro strong:last-child {
+    .saldo-financeiro>strong:last-child {
         font-size: 27px;
     }
 
@@ -1520,4 +1520,27 @@ main.conteudo {
 .erro-venda p {
     margin: 0;
     font-size: 17px;
+}
+
+
+.explicacao-financeira {
+    margin: 8px 0 18px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.descricao-saldo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.descricao-saldo p {
+    margin: 0;
+    max-width: 100%;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    font-weight: normal;
+    color: #555;
 }

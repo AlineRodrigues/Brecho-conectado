@@ -119,6 +119,8 @@ def venda_sucesso(request, venda_id):
         "destinacoes_periodo": destinacoes,
         "saldo_periodo": saldo_periodo,
         "mes_referencia": hoje.strftime("%m/%Y"),
+        "inicio_periodo": inicio_periodo,
+        "fim_periodo": hoje,
     }
 
     return render(
