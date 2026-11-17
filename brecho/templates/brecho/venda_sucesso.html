@@ -221,12 +221,19 @@
                     <div class="corpo-financeiro">
 
                         <p class="referencia-financeira">
-                            Período: {{ mes_referencia }}
+                            <strong>Período considerado:</strong>
+                            {{ inicio_periodo|date:"d/m/Y" }}
+                            a
+                            {{ fim_periodo|date:"d/m/Y" }}
+                        </p>
+
+                        <p class="explicacao-financeira">
+                            Os valores abaixo correspondem às movimentações financeiras
+                            registradas entre as datas informadas.
                         </p>
 
                         <div class="linha-financeira">
                             <span>Entradas (Vendas):</span>
-
                             <strong class="entrada-financeira">
                                 R$ {{ entradas_periodo|localize }}
                             </strong>
@@ -234,7 +241,6 @@
 
                         <div class="linha-financeira">
                             <span>Despesas:</span>
-
                             <strong class="despesa-financeira">
                                 R$ {{ despesas_periodo|localize }}
                             </strong>
@@ -242,7 +248,6 @@
 
                         <div class="linha-financeira">
                             <span>Destinações:</span>
-
                             <strong class="destinacao-financeira">
                                 R$ {{ destinacoes_periodo|localize }}
                             </strong>
@@ -252,6 +257,17 @@
 
                             <strong>Saldo do Período:</strong>
 
+                            <div class="descricao-saldo">
+                                <p>
+                                    É o valor que resta após descontar das entradas
+                                    (vendas) as despesas e destinações registradas
+                                    no período indicado.
+                                    <br>
+                                    <strong>Cálculo:</strong>
+                                    Entradas - Despesas - Destinações.
+                                </p>
+                            </div>
+
                             <strong>
                                 R$ {{ saldo_periodo|localize }}
                             </strong>
@@ -259,7 +275,6 @@
                         </div>
 
                     </div>
-
                 </aside>
 
             </div>
